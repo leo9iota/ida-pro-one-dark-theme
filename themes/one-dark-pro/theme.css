@@ -610,14 +610,13 @@ QTableView, QTreeView, QListView {
 
 /* Header */
 QHeaderView::section {
-	background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                stop: 0 #404858, stop: 1 #303848); /* Header gradient */
-	color: #D0D8E0;
+	background-color: ${od_bg_dark};
+	color: ${od_fg};
     font-weight: bold;
 	padding: 5px; /* Header padding */
 	border: none;
-    border-right: 1px solid #283038;
-    border-bottom: 1px solid #283038;
+    border-right: 1px solid ${od_bg_darker};
+    border-bottom: 1px solid ${od_bg_darker};
     min-height: 25px; /* Header height */
 }
 QHeaderView::section:horizontal {
@@ -629,13 +628,11 @@ QHeaderView::section:vertical {
 
 
 QHeaderView::section:hover {
-	background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                stop: 0 #485060, stop: 1 #384050); /* Lighter hover */
+	background-color: ${od_selection};
 }
 
 QHeaderView::section:pressed {
-	background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                stop: 0 #303848, stop: 1 #384050); /* Pressed state */
+	background-color: ${od_bg_darker};
 }
 
 
@@ -658,26 +655,25 @@ QHeaderView::up-arrow {
 
 /* Top-left corner button in tables */
 QTableCornerButton::section {
-	background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                stop: 0 #404858, stop: 1 #303848); /* Match header */
+	background: ${od_bg_dark};
     border: none;
-    border-right: 1px solid #283038;
-    border-bottom: 1px solid #283038;
+    border-right: 1px solid ${od_bg_darker};
+    border-bottom: 1px solid ${od_bg_darker};
 }
 
 /* Item Selection */
 QTreeView::item:selected,
 QListView::item:selected,
 QTableView::item:selected {
-	background-color: #385070; /* Standard selection blue */
-	color: #FFFFFF; /* White text */
+	background-color: ${od_selection}; /* Standard selection blue */
+	color: ${od_fg}; /* White text */
 }
 /* Hover effect for items */
 QTreeView::item:hover:!selected,
 QListView::item:hover:!selected,
 QTableView::item:hover:!selected {
-    background-color: rgba(80, 100, 130, 0.3); /* Subtle hover */
-    color: #E8E8EE;
+    background-color: ${od_bg_dark}; /* Subtle hover */
+    color: ${od_fg};
     border-radius: 2px;
 }
 
@@ -691,8 +687,7 @@ QTreeView::branch {
 /* Toolbar */
 QToolBar {
 	border: none;
-    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                stop: 0 #2F3644, stop: 1 #262C38); /* Toolbar gradient */
+    background-color: ${od_bg_dark};
     padding: 2px;
     spacing: 3px; /* Spacing between items */
 }
@@ -704,7 +699,7 @@ QToolBar::handle {
 QToolBar::separator {
     height: 16px;
     width: 1px;
-    background: #404858;
+    background: ${od_selection};
     margin: 4px;
 }
 QToolButton {
@@ -714,16 +709,16 @@ QToolButton {
     border-radius: 3px;
 }
 QToolButton:hover {
-    background: rgba(100, 150, 200, 0.3); /* Consistent hover */
-    border: 1px solid rgba(120, 180, 230, 0.4);
+    background: ${od_selection};
+    border: 1px solid ${od_selection};
 }
 QToolButton:pressed {
-    background: rgba(80, 120, 160, 0.4);
-    border: 1px solid rgba(100, 150, 200, 0.5);
+    background: ${od_bg_darker};
+    border: 1px solid ${od_bg_darker};
 }
 QToolButton:checked {
-     background: rgba(80, 120, 160, 0.4);
-     border: 1px solid rgba(100, 150, 200, 0.5);
+     background: ${od_bg_darker};
+     border: 1px solid ${od_bg_darker};
 }
 QToolButton:disabled {
     background: transparent;
@@ -747,18 +742,17 @@ RegJumpButton {
 TNavBand > QPushButton:hover,
 nav_scroll_button_t:hover,
 RegJumpButton:hover {
-    background-color: rgba(100, 150, 200, 0.3); /* Subtle hover */
+    background-color: ${od_selection};
 }
 
-/* Status Bar - Aero Style */
+/* Status Bar - One Dark Style */
 IDAMainWindow > QStatusBar {
 	min-height: 22px; /* Standard height */
 	height: 22px;
 	padding-left: 5px;
-	background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                stop: 0 #2A3240, stop: 1 #202632); /* Bottom gradient */
-    color: #C0C8D0;
-    border-top: 1px solid #384050; /* Separator line */
+	background: ${od_bg_darker};
+    color: ${od_gray};
+    border-top: 1px solid ${od_selection}; /* Separator line */
 }
 
 QStatusBar::item {
@@ -769,14 +763,14 @@ QStatusBar::item {
 QStatusBar QLabel {
 	border: none;
     padding: 0 5px; /* Spacing between labels */
-    color: #C0C8D0;
+    color: ${od_gray};
     background: transparent;
 }
 
 /* CLI Widget (IDC/Python) */
 CLIWidget > QGroupBox {
 	margin-top: 0;
-    border: 1px solid #303848; /* Add border back */
+    border: 1px solid ${od_bg_darker}; /* Add border back */
     border-radius: 4px;
 }
 /* Remove button borders inside CLI box */
@@ -791,22 +785,21 @@ CLIWidget > QGroupBox > QPushButton:focus {
 
 /* Log Window (MainMsgList) - Use base styles */
 MainMsgList {
-	color: #E0E0E5; /* Consistent light text */
-	background-color: #1A1E24; /* Consistent dark background */
-    border: 1px solid #303848;
+	color: ${od_fg}; /* Consistent light text */
+	background-color: ${od_bg}; /* Consistent dark background */
+    border: 1px solid ${od_bg_darker};
     border-radius: 4px;
     padding: 3px;
 }
 
-/* TextEdit Syntax Highlighting - Inherit from _base */
+/* TextEdit Syntax Highlighting - One Dark */
 TextEdit {
     /* Uses properties defined in _base/theme.css under text_area_t[os-dark-theme="true"] */
-    /* Add specific overrides here if needed */
-    background-color: #1A1E24; /* Ensure background consistency */
-    color: #E0E0E5; /* Default text color */
+    background-color: ${od_bg}; /* Ensure background consistency */
+    color: ${od_fg}; /* Default text color */
 }
 TextEdit QWidget { /* Margin widget */
-	background-color: #1E222A; /* Match main background */
+	background-color: ${od_bg}; /* Match main background */
     border: none;
 }
 
@@ -821,128 +814,125 @@ TChooser {
 	qproperty-highlight-bg-selected: #38485E; /* Inherited from base */
 }
 
-/* CustomIDAMemo Disassembly Colors - Use base styles */
+/* CustomIDAMemo Disassembly Colors - One Dark */
 CustomIDAMemo {
     /* Uses properties defined in _base/theme.css under CustomIDAMemo */
-    qproperty-line-bg-default: #1A1E24; /* Main disassembly background */
-    qproperty-line-bg-selected: #283850; /* Selection background (slightly more blue) */
-    qproperty-line-fg-default: #E0E0E5; /* Default text */
+    qproperty-line-bg-default: ${od_bg}; /* Main disassembly background */
+    qproperty-line-bg-selected: ${od_selection}; /* Selection background */
+    qproperty-line-fg-default: ${od_fg}; /* Default text */
 
-    /* --- Ensure colors from _base are applied --- */
-	qproperty-line-fg-regular-comment: #6A9955;
-	qproperty-line-fg-repeatable-comment: #808080;
-	qproperty-line-fg-automatic-comment: #608060; /* Slightly different auto-comment */
-	qproperty-line-fg-insn: #D0D8E0; /* Instruction mnemonic */
-	qproperty-line-fg-dummy-data-name: #A0A8B0;
-	qproperty-line-fg-regular-data-name: #9CDCFE;
-	qproperty-line-fg-demangled-name: #DCDCAA;
-	qproperty-line-fg-punctuation: #A0A8B0;
-	qproperty-line-fg-charlit-in-insn: #D69D85;
-	qproperty-line-fg-strlit-in-insn: #CE9178; /* String */
-	qproperty-line-fg-numlit-in-insn: #B5CEA8;
-	qproperty-line-fg-void-opnd: #4EC9B0;
-	qproperty-line-fg-code-xref: #569CD6; /* Code Xref (Blue) */
-	qproperty-line-fg-data-xref: #B475D1; /* Data Xref (Purple) */
-	qproperty-line-fg-code-xref-to-tail: #D88080; /* Tail Code Xref */
-	qproperty-line-fg-data-xref-to-tail: #D8B080; /* Tail Data Xref */
-	qproperty-line-fg-error: #F44747; /* Error red */
-	qproperty-line-fg-line-prefix: #808890; /* Line prefix color */
-	qproperty-line-fg-opcode-byte: #707880; /* Opcode bytes */
-	qproperty-line-fg-extra-line: #9CDCFE;
-	qproperty-line-fg-alt-opnd: #C586C0; /* Alt operand */
-	qproperty-line-fg-hidden: #707880; /* Hidden range */
-	qproperty-line-fg-libfunc: #4EC9B0; /* Library func */
-	qproperty-line-fg-locvar: #9CDCFE; /* Local var */
-	qproperty-line-fg-dummy-code-name: #D0D8E0;
-	qproperty-line-fg-asm-directive: #C586C0;
-	qproperty-line-fg-macro: #569CD6;
-	qproperty-line-fg-strlit-in-data: #CE9178;
-	qproperty-line-fg-charlit-in-data: #D69D85;
-	qproperty-line-fg-numlit-in-data: #B5CEA8;
-	qproperty-line-fg-keyword: #569CD6; /* Keywords (like segment attrs) */
-	qproperty-line-fg-register-name: #9CDCFE; /* Register names */
-	qproperty-line-fg-import-name: #C586C0; /* Import names */
-	qproperty-line-fg-segment-name: #4EC9B0; /* Segment names */
-	qproperty-line-fg-dummy-unknown-name: #A0A8B0;
-	qproperty-line-fg-code-name: #DCDCAA; /* Function/Code Label */
-	qproperty-line-fg-unknown-name: #A0A8B0;
-	qproperty-line-fg-collapsed-line: #808080;
+    /* --- One Dark Syntax Highlighting --- */
+	qproperty-line-fg-regular-comment: ${od_gray};
+	qproperty-line-fg-repeatable-comment: ${od_gray};
+	qproperty-line-fg-automatic-comment: ${od_gray};
+	qproperty-line-fg-insn: ${od_blue}; /* Instruction mnemonic */
+	qproperty-line-fg-dummy-data-name: ${od_gray};
+	qproperty-line-fg-regular-data-name: ${od_yellow};
+	qproperty-line-fg-demangled-name: ${od_yellow};
+	qproperty-line-fg-punctuation: ${od_fg};
+	qproperty-line-fg-charlit-in-insn: ${od_green};
+	qproperty-line-fg-strlit-in-insn: ${od_green}; /* String */
+	qproperty-line-fg-numlit-in-insn: ${od_purple};
+	qproperty-line-fg-void-opnd: ${od_red};
+	qproperty-line-fg-code-xref: ${od_blue}; /* Code Xref (Blue) */
+	qproperty-line-fg-data-xref: ${od_purple}; /* Data Xref (Purple) */
+	qproperty-line-fg-code-xref-to-tail: ${od_blue}; /* Tail Code Xref */
+	qproperty-line-fg-data-xref-to-tail: ${od_purple}; /* Tail Data Xref */
+	qproperty-line-fg-error: ${od_red}; /* Error red */
+	qproperty-line-fg-line-prefix: ${od_gray}; /* Line prefix color */
+	qproperty-line-fg-opcode-byte: ${od_gray}; /* Opcode bytes */
+	qproperty-line-fg-extra-line: ${od_blue};
+	qproperty-line-fg-alt-opnd: ${od_purple}; /* Alt operand */
+	qproperty-line-fg-hidden: ${od_gray}; /* Hidden range */
+	qproperty-line-fg-libfunc: ${od_cyan}; /* Library func */
+	qproperty-line-fg-locvar: ${od_red}; /* Local var */
+	qproperty-line-fg-dummy-code-name: ${od_gray};
+	qproperty-line-fg-asm-directive: ${od_purple};
+	qproperty-line-fg-macro: ${od_blue};
+	qproperty-line-fg-strlit-in-data: ${od_green};
+	qproperty-line-fg-charlit-in-data: ${od_green};
+	qproperty-line-fg-numlit-in-data: ${od_purple};
+	qproperty-line-fg-keyword: ${od_purple}; /* Keywords */
+	qproperty-line-fg-register-name: ${od_red}; /* Register names */
+	qproperty-line-fg-import-name: ${od_yellow}; /* Import names */
+	qproperty-line-fg-segment-name: ${od_cyan}; /* Segment names */
+	qproperty-line-fg-dummy-unknown-name: ${od_gray};
+	qproperty-line-fg-code-name: ${od_yellow}; /* Function/Code Label */
+	qproperty-line-fg-unknown-name: ${od_gray};
+	qproperty-line-fg-collapsed-line: ${od_gray};
 
     /* Prefixes */
-	qproperty-line-pfx-libfunc: #4EC9B0;
-	qproperty-line-pfx-func: #DCDCAA;
-	qproperty-line-pfx-insn: #A0A8B0;
-	qproperty-line-pfx-data: #9CDCFE;
-	qproperty-line-pfx-unexplored: #808080;
-	qproperty-line-pfx-extern: #C586C0;
-	qproperty-line-pfx-current-item: #FFFFFF;
-	qproperty-line-pfx-current-line: #FFFFB0; /* Current line prefix highlight */
+	qproperty-line-pfx-libfunc: ${od_cyan};
+	qproperty-line-pfx-func: ${od_yellow};
+	qproperty-line-pfx-insn: ${od_gray};
+	qproperty-line-pfx-data: ${od_gray};
+	qproperty-line-pfx-unexplored: ${od_gray};
+	qproperty-line-pfx-extern: ${od_purple};
+	qproperty-line-pfx-current-item: ${od_fg};
+	qproperty-line-pfx-current-line: ${od_yellow}; /* Current line prefix highlight */
 
     /* Graph */
-    qproperty-graph-edge-normal: #708090; /* Match base */
-    qproperty-graph-edge-yes: #80C080;
-    qproperty-graph-edge-no: #D88080;
-    qproperty-graph-edge-high: #90A0B0;
-    qproperty-graph-edge-current: #FFFFFF; /* Current edge */
+    qproperty-graph-edge-normal: ${od_gray};
+    qproperty-graph-edge-yes: ${od_green};
+    qproperty-graph-edge-no: ${od_red};
+    qproperty-graph-edge-high: ${od_blue};
+    qproperty-graph-edge-current: ${od_fg};
 
     /* Highlights */
-    qproperty-line-bg-highlight: #304058; /* Highlight color */
+    qproperty-line-bg-highlight: ${od_selection};
     /* Add overrides for highlight-2..8 if needed */
 
     /* Misc */
-    qproperty-line-fg-patched-bytes: #D88080;
-    qproperty-line-fg-unsaved-changes: #FFB000;
+    qproperty-line-fg-patched-bytes: ${od_red};
+    qproperty-line-fg-unsaved-changes: ${od_yellow};
 }
 
 /* Debugging/Hints mode backgrounds from base */
 CustomIDAMemo[debugging="true"] {
-	qproperty-line-bgovl-current-ip: rgba(180, 100, 70, 0.50); /* Inherited */
-	qproperty-line-bg-default: #181A1F; /* Inherited */
-    /* Potentially override graph colors for debugging */
-	/* qproperty-graph-bg-top: #101215; */
-	/* qproperty-graph-bg-bottom: #0E1013; */
+	qproperty-line-bgovl-current-ip: rgba(224, 108, 117, 0.4); /* Red tint */
+	qproperty-line-bg-default: ${od_bg_dark};
 }
 CustomIDAMemo[hints="true"] {
-	qproperty-line-bg-default: #282C34; /* Inherited */
+	qproperty-line-bg-default: ${od_bg_dark};
 }
 
 /* Text Arrows - Use base styles */
 TextArrows {
     /* Inherits from _base */
-	qproperty-jump-under-cursor: #60A0FF; /* Ensure consistent blue */
-	qproperty-jump-target: #80FF80;
+	qproperty-jump-under-cursor: ${od_blue}; /* Ensure consistent blue */
+	qproperty-jump-target: ${od_green};
 }
 
-/* CPU Registers - Use base styles */
+/* CPU Registers - One Dark Style */
 TCpuRegs {
     /* Inherits TCpuRegs[os-dark-theme="true"] from _base */
-	background-color: #2A303A;
-	qproperty-register-defined: #E0E0E0;
-	qproperty-register-changed: #FFFF90;
-	qproperty-register-edited: #FFB060;
-	qproperty-register-unavailable: #808080;
+	background-color: ${od_bg_dark};
+	qproperty-register-defined: ${od_fg};
+	qproperty-register-changed: ${od_yellow};
+	qproperty-register-edited: ${od_red};
+	qproperty-register-unavailable: ${od_gray};
 }
 TCpuRegs QPushButton { /* Button inside registers view */
 	background: transparent;
-    border: 1px solid #405068;
+    border: 1px solid ${od_bg_darker};
     border-radius: 3px;
-    color: #B0B8C0;
+    color: ${od_fg};
     padding: 1px 4px;
     margin: 1px;
 }
 TCpuRegs QPushButton:hover {
-	background: #486080;
-    border-color: #6080B0;
-	color: #FFFFFF;
+	background: ${od_selection};
+    border-color: ${od_blue};
+	color: ${od_fg};
 }
 TCpuRegs QPushButton:!enabled {
-	background: #303540;
-    border-color: #404550;
-	color: #707880;
+	background: ${od_bg};
+    border-color: ${od_bg_darker};
+	color: ${od_gray};
 }
 TCpuRegs IDALabel { /* Labels like "Register", "Value" */
 	font-style: inherit;
-	color: #A0A8B0; /* Consistent label color */
+	color: ${od_gray}; /* Consistent label color */
     background: transparent;
     padding: 2px;
 }

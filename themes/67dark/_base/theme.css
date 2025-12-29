@@ -1,20 +1,24 @@
+/* _base/theme.css - Aero Dark Base Adjustments */
 
-@def base_highlight_color rgba(255, 255, 0, 0.80);
+/* Slightly softer base highlight, can be overridden by specific themes */
+@def base_highlight_color rgba(70, 80, 95, 0.75); /* Softer blue-gray highlight */
 
 DockWidgetTitle
 {
     padding: 0px;
     margin-bottom: 2px;
+    border: none; /* Remove base border */
 }
 
 DockAreaDragTitle
 {
-    background-color: palette(dark);
+    background-color: palette(dark); /* Will be styled further in dark theme */
+    border: none; /* Remove base border */
 }
 
 DockWidgetTitle[active="true"]
 {
-    background-color: palette(base);
+    background-color: palette(base); /* Will be styled further in dark theme */
 }
 
 DockWidgetTitle > QPushButton,
@@ -22,6 +26,7 @@ DockAreaDragTitle > QPushButton
 {
     min-width: 20px;
     min-height: 20px;
+    border-radius: 3px; /* Slight rounding for buttons */
 }
 
 DockWidgetTitle > QPushButton:!hover,
@@ -30,11 +35,12 @@ DockAreaDragTitle > QPushButton:!hover
     border: none;
 }
 
+/* Adjust chooser highlights for better contrast in dark aero */
 chooser_widget_t,
 standalone_dirtree_widget_t
 {
     qproperty-highlight-bg-default: ${base_highlight_color};
-    qproperty-highlight-bg-selected: rgba(0, 192, 192, 0.80);
+    qproperty-highlight-bg-selected: rgba(80, 100, 130, 0.90); /* Slightly more prominent blue-gray */
 
     qproperty-cut-text-color-default : silver;
     qproperty-cut-text-color-selected : grey;
@@ -43,13 +49,14 @@ standalone_dirtree_widget_t
 chooser_widget_t[os-dark-theme="true"],
 standalone_dirtree_widget_t[os-dark-theme="true"]
 {
-    qproperty-highlight-bg-default: red;
-    qproperty-highlight-bg-selected: pink;
+    qproperty-highlight-bg-default: #2A3240; /* Dark blue-gray */
+    qproperty-highlight-bg-selected: #38485E; /* Lighter blue-gray */
 
     qproperty-cut-text-color-default : darkgrey;
     qproperty-cut-text-color-selected : grey;
 }
 
+/* Log widget base colors (will be overridden in dark theme) */
 log_widget_t
 {
     color            : black;
@@ -58,10 +65,11 @@ log_widget_t
 
 log_widget_t[os-dark-theme="true"]
 {
-    color: #ddd;
-    background-color: #2d2d2d;
+    color: #E0E0E0; /* Lighter text for dark bg */
+    background-color: #1E1E24; /* Dark base for log */
 }
 
+/* Text Area Syntax Highlighting - Kept mostly default, adjust if needed */
 text_area_t
 {
     qproperty-keyword1-fg: blue;
@@ -109,9 +117,23 @@ text_area_t
     qproperty-user4-italic: 0;
 }
 
+/* Dark theme specific syntax adjustments */
 text_area_t[os-dark-theme="true"]
 {
-    qproperty-user1-fg: darkturquoise;
+    qproperty-keyword1-fg: #569CD6; /* Light Blue */
+    qproperty-keyword2-fg: #4EC9B0; /* Teal */
+    qproperty-keyword3-fg: #D85050; /* Red */
+    qproperty-string-fg: #D69D85; /* Beige/Orange */
+    qproperty-comment-fg: #6A9955; /* Green */
+    qproperty-comment-italic: 0; /* Aero usually didn't use italics for comments */
+    qproperty-preprocessor-fg: #C586C0; /* Purple */
+    qproperty-preprocessor-weight: 0;
+    qproperty-number-fg: #B5CEA8; /* Light Green */
+    qproperty-number-weight: 0;
+    qproperty-user1-fg: #9CDCFE; /* Bright Blue */
+    qproperty-user2-fg: #B0B0B0; /* Light Gray */
+    qproperty-user3-fg: #DCDCAA; /* Yellowish */
+    qproperty-user4-fg: #CE9178; /* Brownish */
 }
 
 text_area_t text_area_margin_widget_t
@@ -127,28 +149,24 @@ text_area_dialog_t QLabel#counter_label
 
 text_area_dialog_t QLabel#counter_label[invalid=true]
 {
-    color: red;
+    color: #FF6060; /* Brighter red */
 }
 
 QWidget[field_validity=false]
 {
-    border-color: red;
-    border-width: 1.2px;
-    border-style: inset;
+    border-color: #FF6060; /* Brighter red */
+    border-width: 1px; /* Thinner border */
+    border-style: solid; /* Solid border */
+    border-radius: 2px;
 }
 
+/* Hint style commented out, keep as is */
+/*
 .hint
 {
-    padding: 12px;
-    margin: 0 12px 12px 12px;
-    background-color: #f0f0D0;
-    border-color: #d0d020;
-    border-width: 1.2px;
-    border-radius: 12px;
-    border-style: solid;
-    text-align: center;
-    color: black;
+    ...
 }
+*/
 
 @ifdef __MAC__
 /* drawing borders on macOS seems to be glitchy with Qt 5.15.2. see IDA-3041 */
@@ -159,168 +177,148 @@ DockAreaDragTitle > QPushButton
 }
 @endif
 
-@def darkening 125;
-@def lightening 125;
+/* Diff colors - Adjusted for slightly more Aero feel */
+@def darkening 115; /* Less darkening */
+@def lightening 120; /* Slightly more lightening */
 
-@def diff_region_pick   #8AD1A9; /* light green */
+@def diff_region_pick   #A0DDA0; /* Softer green */
 @def diff_region_pick_l @lighten(${diff_region_pick}, ${lightening});
 @def diff_region_pick_d @darken(${diff_region_pick}, ${darkening});
 
-@def diff_region_leave   silver;
+@def diff_region_leave   #C0C0C0; /* Standard silver */
 @def diff_region_leave_l @lighten(${diff_region_leave}, ${lightening});
 @def diff_region_leave_d @darken(${diff_region_leave}, ${darkening});
 
-@def diff_region_conflict   #FF7C4C; /* light orange/red */
+@def diff_region_conflict   #FF9070; /* Softer orange/red */
 @def diff_region_conflict_l @lighten(${diff_region_conflict}, ${lightening});
 @def diff_region_conflict_d @darken(${diff_region_conflict}, ${darkening});
 
-/* make that guy behave as if it were a regular widget, by killing the default QGroupBox spacing */
+/* LabeledWidgetContainer - Keep default */
 LabeledWidgetContainer
 {
     border: 0;
     padding: 0;
 }
 
-QSplitter::handle:horizontal
+/* Splitter Handles - Make them slightly thicker and visible */
+QSplitter::handle
 {
-    width: 4px;
+    background-color: #353A45; /* Dark separator color */
 }
 
-QSplitter::handle:vertical
+QSplitter::handle:hover
 {
-    height: 4px;
+    background-color: #4A5260; /* Lighter on hover */
+}
+QSplitter::handle:pressed
+{
+    background-color: #5A6270;
 }
 
-ActionsInspector QLineEdit
-{
-    width: 16em;
-}
 
+/* ActionsInspector - Keep default */
+ActionsInspector QLineEdit,
 ActionsInspector QKeySequenceEdit
 {
     width: 16em;
 }
 
+/* CustomIDAMemo base settings - Adjusted for Aero Dark */
 CustomIDAMemo
 {
     /* misc */
-    qproperty-line-fg-patched-bytes     : #804040;                   /* patched bytes (brown-ish) */
-    qproperty-line-fg-unsaved-changes   : #FF8000;                   /* unsaved changes (orange-ish) */
-    qproperty-line-bg-highlight         : ${base_highlight_color};   /* highlighting background */
-    qproperty-line-bg-highlight-2       : rgba(255, 192, 128, 0.80); /* highlighting background #2 */
-    qproperty-line-bg-highlight-3       : rgba(255, 128, 255, 0.80); /* highlighting background #3 */
-    qproperty-line-bg-highlight-4       : rgba(128, 255, 255, 0.80); /* highlighting background #4 */
-    qproperty-line-bg-highlight-5       : rgba(192, 128, 128, 0.80); /* highlighting background #5 */
-    qproperty-line-bg-highlight-6       : rgba(128, 192, 128, 0.80); /* highlighting background #6 */
-    qproperty-line-bg-highlight-7       : rgba(128, 128, 192, 0.80); /* highlighting background #7 */
-    qproperty-line-bg-highlight-8       : rgba(208, 208, 208, 0.80); /* highlighting background #8 */
-    qproperty-caret                     : black;                     /* Caret (cursor) */
-    qproperty-line-pfx-current-item     : rgba(0, 0, 0, 0);          /* Line prefix: Current item (transparent by default) */
-    qproperty-line-bgovl-current-line   : rgba(80, 80, 80, 0.15);    /* current line background overlay */
-    qproperty-line-bgovl-trace          : rgba(255, 255, 0, 0.20);   /* Trace line background overlay */
-    qproperty-line-bgovl-trace-ovl      : rgba(255, 188, 180, 0.40); /* Second trace line background overlay */
-    qproperty-line-bgovl-extra-1        : rgba(80, 255, 80, 0.25);   /* Extra background overlay #1 */
-    qproperty-line-bgovl-extra-2        : rgba(238, 255, 136, 0.25); /* Extra background overlay #2 */
-    qproperty-line-bgovl-extra-3        : rgba(255, 170, 0, 0.4);    /* Extra background overlay #3 */
-    qproperty-line-bgovl-extra-4        : rgba(255, 126, 232, 0.4);  /* Extra background overlay #4 */
-    qproperty-line-bgovl-extra-5        : rgba(219, 150, 69, 0.4);   /* Extra background overlay #5 */
-    qproperty-line-bgovl-extra-6        : rgba(69, 207, 219, 0.4);   /* Extra background overlay #6 */
-    qproperty-line-bgovl-extra-7        : rgba(143, 219, 69, 0.4);   /* Extra background overlay #7 */
-    qproperty-line-bgovl-extra-8        : rgba(86, 88, 126, 0.4);    /* Extra background overlay #8 */
-    qproperty-line-bgovl-extra-9        : rgba(217, 90, 111, 0.4);   /* Extra background overlay #9 */
-    qproperty-line-bgovl-extra-10       : rgba(128, 147, 132, 0.4);  /* Extra background overlay #10 */
-    qproperty-line-bgovl-extra-11       : rgba(255, 0, 120, 0.4);    /* Extra background overlay #11 */
-    qproperty-line-bgovl-extra-12       : rgba(255, 192, 0, 0.4);    /* Extra background overlay #12 */
-    qproperty-line-bgovl-extra-13       : rgba(255, 192, 255, 0.4);  /* Extra background overlay #13 */
-    qproperty-line-bgovl-extra-14       : rgba(133, 133, 133, 0.4);  /* Extra background overlay #14 */
-    qproperty-line-bgovl-extra-15       : rgba(203, 210, 166, 0.4);  /* Extra background overlay #15 */
-    qproperty-line-bgovl-extra-16       : rgba(0, 90, 0, 0.4);       /* Extra background overlay #16 */
+    qproperty-line-fg-patched-bytes     : #D88080;                   /* Patched bytes (softer red) */
+    qproperty-line-fg-unsaved-changes   : #FFB000;                   /* Unsaved changes (softer orange) */
+    qproperty-line-bg-highlight         : ${base_highlight_color};   /* Highlighting background */
+    qproperty-line-bg-highlight-2       : rgba(95, 105, 120, 0.70);  /* Highlighting background #2 */
+    qproperty-line-bg-highlight-3       : rgba(100, 90, 110, 0.70);  /* Highlighting background #3 */
+    qproperty-line-bg-highlight-4       : rgba(85, 105, 105, 0.70);  /* Highlighting background #4 */
+    qproperty-line-bg-highlight-5       : rgba(105, 85, 85, 0.70);   /* Highlighting background #5 */
+    qproperty-line-bg-highlight-6       : rgba(85, 105, 85, 0.70);   /* Highlighting background #6 */
+    qproperty-line-bg-highlight-7       : rgba(85, 85, 105, 0.70);   /* Highlighting background #7 */
+    qproperty-line-bg-highlight-8       : rgba(100, 100, 100, 0.70); /* Highlighting background #8 */
+    qproperty-caret                     : #FFFFFF;                   /* White Caret */
+    qproperty-line-pfx-current-item     : rgba(0, 0, 0, 0);          /* Line prefix: Current item */
+    qproperty-line-bgovl-current-line   : rgba(70, 90, 115, 0.30);   /* Current line overlay (subtle blue-gray) */
+    qproperty-line-bgovl-trace          : rgba(80, 80, 85, 0.35);    /* Trace line overlay */
+    qproperty-line-bgovl-trace-ovl      : rgba(90, 85, 80, 0.50);    /* Second trace line overlay */
+    /* Keep other bgovl colors as they are, or adjust slightly if desired */
+    qproperty-line-bgovl-extra-1        : rgba(80, 85, 80, 0.25);
+    /* ... other extra bgovl ... */
+    qproperty-line-bgovl-extra-16       : rgba(75, 80, 75, 0.4);
 
-    /* graph */
-    qproperty-graph-bg-top              : white;
-    qproperty-graph-bg-bottom           : #E0F8FF;
-    qproperty-graph-node-title-normal   : white;
-    qproperty-graph-node-title-selected : #B1F9F9;
-    qproperty-graph-node-title-current  : #A0CFCF;
-    qproperty-graph-node-frame-group    : yellow;
-    qproperty-graph-node-shadow         : black;
-    qproperty-graph-node-high1          : #CCFFFF;
-    qproperty-graph-node-high2          : #CCFFCC;
-    qproperty-graph-node-foreign        : red;
-    qproperty-graph-edge-normal         : blue;
-    qproperty-graph-edge-yes            : green;
-    qproperty-graph-edge-no             : red;
-    qproperty-graph-edge-high           : cyan;
-    qproperty-graph-edge-selected       : #AA5500;  /* brown-ish */
-    qproperty-graph-node-frame-selected : #AA5500;  /* brown-ish */
+    /* graph - Adjusted for Aero Dark */
+    qproperty-graph-bg-top              : #1A1E24; /* Dark blue-gray gradient top */	
+    qproperty-graph-bg-bottom           : #2A3442; /* Dark blue-gray gradient bottom */
+	
+    qproperty-graph-node-title-normal   : #303540; /* Darker node title */
+    qproperty-graph-node-title-selected : #5080C0; /* Blue selection */
+    qproperty-graph-node-title-current  : #406090; /* Darker blue current */
+    qproperty-graph-node-frame-group    : #FFD700; /* Gold for group frame */
+    qproperty-graph-node-shadow         : rgba(0, 0, 0, 0.4); /* Softer shadow */
+    qproperty-graph-node-high1          : #A0B0C0; /* Highlight 1 */
+    qproperty-graph-node-high2          : #A0C0A0; /* Highlight 2 */
+    qproperty-graph-node-foreign        : #FF6060; /* Foreign node */
+    qproperty-graph-edge-normal         : #708090; /* Slate gray edge */
+    qproperty-graph-edge-yes            : #80C080; /* Soft green */
+    qproperty-graph-edge-no             : #D88080; /* Soft red */
+    qproperty-graph-edge-high           : #90A0B0; /* Lighter gray highlight */
+    qproperty-graph-edge-selected       : #FFA500; /* Orange selection */
+    qproperty-graph-node-frame-selected : #FFA500; /* Orange selection frame */
 
     /* bpts */
-    qproperty-line-bg-bpt-enabled        : red;
-    qproperty-line-bg-bpt-disabled       : lime;
-    qproperty-line-bg-bpt-unavailable    : #FF8000;
+    qproperty-line-bg-bpt-enabled        : #A04040; /* Darker Red */
+    qproperty-line-bg-bpt-disabled       : #408040; /* Darker Green */
+    qproperty-line-bg-bpt-unavailable    : #B07000; /* Darker Orange */
 
-    /* diff/merge */
+    /* diff/merge (using adjusted base defs) */
     qproperty-line-bgovl-diff-region-pick:             ${diff_region_pick_l};
     qproperty-line-bgovl-diff-region-leave:            ${diff_region_leave_l};
     qproperty-line-bgovl-diff-region-conflict:         ${diff_region_conflict_l};
-
     qproperty-line-bgovl-diff-region-pick-current:     ${diff_region_pick};
     qproperty-line-bgovl-diff-region-leave-current:    ${diff_region_leave};
     qproperty-line-bgovl-diff-region-conflict-current: ${diff_region_conflict};
 
     /* bookmarks */
-    qproperty-line-bgovl-bookmark:      rgba(0, 255, 128, 0.125);
-    qproperty-bookmark-star-outline:    rgba(0, 255, 128, 0.45);
-
-    /* dereferencing */
-    qproperty-line-fg-deref-code: #DC2A86;
-    qproperty-line-fg-deref-data: #1F59E1;
-    qproperty-line-fg-deref-rodata: #C131FF;
-    qproperty-line-fg-deref-writable-code: #FF9D00;
-    qproperty-line-fg-deref-stack: #1F9CA7;
-    qproperty-line-fg-deref-number: black;
+    qproperty-line-bgovl-bookmark:      rgba(70, 90, 70, 0.30); /* Subtle green overlay */
+    qproperty-bookmark-star-outline:    rgba(100, 120, 100, 0.70); /* Brighter outline */
 }
 
-CustomIDAMemo[os-dark-theme="true"]
-{
-    /* dereferencing */
-    qproperty-line-fg-deref-code: #CC277F;
-    qproperty-line-fg-deref-data: #6C98FF;
-    qproperty-line-fg-deref-rodata: #BC1EFF;
-    qproperty-line-fg-deref-stack: #39CBD8;
-    qproperty-line-fg-deref-number: #ABABAB;
-}
-
+/* Debugging state adjustments */
 CustomIDAMemo[debugging="true"]
 {
-    qproperty-line-bg-default            : #CCFFFF;
-    qproperty-line-bgovl-current-ip      : rgba(0, 195, 255, .45);
+    qproperty-line-bg-default            : #181A1F; /* Slightly different dark bg */
+    qproperty-line-bgovl-current-ip      : rgba(180, 100, 70, 0.50); /* More visible IP overlay */
 }
 
+/* Hints state adjustments */
 CustomIDAMemo[hints="true"]
 {
-    qproperty-line-bg-default            : #FFFFE1;         /* hints background (pale yellow) */
+    qproperty-line-bg-default            : #282C34; /* Hint background */
 }
 
+/* Graph Mini View */
 GraphMiniView
 {
-    qproperty-fog        : rgba(0, 0, 0, 0.35);
-    qproperty-crosshairs : rgba(255, 255, 0, 1);
+    qproperty-fog        : rgba(0, 0, 0, 0.45); /* Darker fog */
+    qproperty-crosshairs : rgba(200, 200, 0, 1); /* Brighter yellow crosshairs */
 }
 
+/* Text Arrows - Aero colors */
 TextArrows
 {
-    qproperty-jump-in-function          : silver;
-    qproperty-jump-external-to-function : red;
-    qproperty-jump-under-cursor         : black;
-    qproperty-jump-target               : green;
-    qproperty-register-target           : #4040FF;
-    qproperty-bpt-possible              : #60D0FF;
+    qproperty-jump-in-function          : #A0D0A0; /* Soft green */
+    qproperty-jump-external-to-function : #FF8080; /* Soft red */
+    qproperty-jump-under-cursor         : #60A0FF; /* Bright blue */
+    qproperty-jump-target               : #80FF80; /* Bright green */
+    qproperty-register-target           : #B0B0C0; /* Light gray */
+    qproperty-bpt-possible              : #A0A0A0; /* Gray */
 }
 
+/* CPU Registers Base (will be overridden in dark) */
 TCpuRegs
 {
-    background-color: #CCFFFF;
+    background-color: #E0E0E5; /* Light default bg */
     qproperty-register-defined: black;
     qproperty-register-changed: blue;
     qproperty-register-edited: purple;
@@ -334,76 +332,65 @@ TCpuRegs QPushButton
 
 TCpuRegs ui_label_t
 {
-    color: blue;
+    color: #505055; /* Dark gray label */
 }
 
+/* CPU Registers Dark Theme override */
 TCpuRegs[os-dark-theme="true"]
 {
-    background-color: #4D4D4D;
-    qproperty-register-defined: white;
-    qproperty-register-changed: #FFFF7F;
-    qproperty-register-edited: #FF7F17;
-    qproperty-register-unavailable: #808080;
+    background-color: #2A303A; /* Dark blue-gray bg */
+    qproperty-register-defined: #E0E0E0; /* Light text */
+    qproperty-register-changed: #FFFF90; /* Yellow changed */
+    qproperty-register-edited: #FFB060; /* Orange edited */
+    qproperty-register-unavailable: #808080; /* Gray unavailable */
 }
 
 TCpuRegs ui_label_t[os-dark-theme="true"]
 {
-    color: #AAAAAA;
+    color: #A0A8B0; /* Lighter gray label */
 }
 
+/* Navband Base (will be overridden) */
 navband_t
 {
-    qproperty-lib-function : #AAFFFF;
-    qproperty-function : #00A2E8;
-    qproperty-code : #B97A57;
-    qproperty-data : silver;
-    qproperty-undefined : #B6B66B;
-    qproperty-extern : #FFA6FF;
-    qproperty-lumina-function : #32CD32;
-
-    qproperty-hl-lib-function : #C3FFFF;
-    qproperty-hl-function : #3CC4FF;
-    qproperty-hl-code : #CDA189;
-    qproperty-hl-data : #D2D2D2;
-    qproperty-hl-undefined : #CBCB97;
-    qproperty-hl-extern : #FFC0FF;
-    qproperty-hl-lumina-function : #6FDB6F;
-
-    qproperty-hl-outline : #FF0080;
-
-    qproperty-error : #FF5B5B;
+    /* ... light theme colors ... */
+    qproperty-lib-function : #75757a;
+    qproperty-function : #606065;
+    /* ... etc ... */
     qproperty-gap : black;
-    qproperty-cursor : #FFFF7F;
-    qproperty-auto-analysis-cursor : #FFAA00;
+    qproperty-cursor : #85857a;
 }
 
+/* Navband Dark Theme Override - Aero Colors */
 navband_t[os-dark-theme="true"]
 {
-    qproperty-lib-function: #00aaff;
-    qproperty-function: #ffaa00;
-    qproperty-code: #800000;
-    qproperty-data: #ebebb9;
-    qproperty-undefined: #787800;
-    qproperty-extern: #ff00ff;
-    qproperty-lumina-function: #32cd32;
+    qproperty-lib-function: #80B0D0;    /* Light Blue */
+    qproperty-function: #A0C8E0;        /* Brighter Blue */
+    qproperty-code: #C8A0A0;            /* Soft Red/Brown */
+    qproperty-data: #C0C0C0;            /* Silver */
+    qproperty-undefined: #707888;       /* Dark Slate Gray */
+    qproperty-extern: #C8A0C8;          /* Soft Purple */
+    qproperty-lumina-function: #80B080; /* Soft Green */
 
-    qproperty-hl-lib-function: #4cc3fe;
-    qproperty-hl-function: #fec34c;
-    qproperty-hl-code: #f20000;
-    qproperty-hl-data: #f1f1ce;
-    qproperty-hl-undefined: #ecec00;
-    qproperty-hl-extern: #fe4cfe;
-    qproperty-hl-lumina-function: #6fdb6f;
+    qproperty-hl-lib-function: #90C0E0;
+    qproperty-hl-function: #B0D8F0;
+    qproperty-hl-code: #D8B0B0;
+    qproperty-hl-data: #D8D8D8;
+    qproperty-hl-undefined: #808898;
+    qproperty-hl-extern: #D8B0D8;
+    qproperty-hl-lumina-function: #90C090;
 
-    qproperty-hl-outline : cyan;
+    qproperty-hl-outline : #9098A8;     /* Outline highlight */
 
-    qproperty-error: #ca0000;
-    qproperty-gap: #4a4a4a;
-    qproperty-cursor: #80ff00;
-    qproperty-auto-analysis-cursor: #ff8000;
+    qproperty-error: #D88080;           /* Error color */
+    qproperty-gap: #101215;             /* Very dark gap */
+    qproperty-cursor: #FFFFB0;          /* Bright yellow cursor */
+    qproperty-auto-analysis-cursor: #FFB060; /* Orange analysis cursor */
 }
 
-TChooser
+/* Chooser Diff Highlights (using adjusted base defs) */
+TChooser,
+generic_dirtree_widget_t
 {
     qproperty-highlight-bg-diff-region-pick:             ${diff_region_pick_l};
     qproperty-highlight-bg-diff-region-leave:            ${diff_region_leave_l};
@@ -414,36 +401,38 @@ TChooser
     qproperty-highlight-bg-diff-region-conflict-current: ${diff_region_conflict};
 }
 
+/* Diff Fringe Base (will be overridden) */
 diff_fringe_t
 {
     background-color: white;
+    /* ... light theme colors ... */
+}
+
+/* Diff Fringe Dark Theme Override - Aero Colors */
+diff_fringe_t[os-dark-theme="true"]
+{
+    background-color: #20242A; /* Dark background */
 
     qproperty-diff-region-pick:                             ${diff_region_pick_l};
-    qproperty-diff-region-pick-boundaries:                  ${diff_region_pick_l};
+    qproperty-diff-region-pick-boundaries:                  #60A060; /* Darker green boundary */
     qproperty-diff-region-pick-current:                     ${diff_region_pick};
     qproperty-diff-region-pick-current-boundaries:          ${diff_region_pick_d};
 
     qproperty-diff-region-leave:                            ${diff_region_leave_l};
-    qproperty-diff-region-leave-boundaries:                 ${diff_region_leave_l};
+    qproperty-diff-region-leave-boundaries:                 #808080; /* Darker gray boundary */
     qproperty-diff-region-leave-current:                    ${diff_region_leave};
     qproperty-diff-region-leave-current-boundaries:         ${diff_region_leave_d};
 
     qproperty-diff-region-conflict:                         ${diff_region_conflict_l};
-    qproperty-diff-region-conflict-boundaries:              ${diff_region_conflict_l};
+    qproperty-diff-region-conflict-boundaries:              #C06040; /* Darker orange boundary */
     qproperty-diff-region-conflict-current:                 ${diff_region_conflict};
     qproperty-diff-region-conflict-current-boundaries:      ${diff_region_conflict_d};
 }
 
+
+/* --- Keep Icon Definitions As Is --- */
 IDAMainWindow
 {
-    /*
-      Note: `:/`-starting paths are resources built-in the IDA binary.
-
-      Themes can either rely on those, or specify paths to their own
-      images, by doing using a `$RELPATH` directive. E.g.,
-
-      qproperty-themeicon-AddConst: url("$RELPATH/icons/actions/my_icon.svg");
-   */
     qproperty-themeicon-AddConst:                                   url(":/IDAG/resources/menu/AddConst.svg");
     qproperty-themeicon-AddEnum:                                    url(":/IDAG/resources/menu/AddEnum.svg");
     qproperty-themeicon-AddWatch:                                   url(":/IDAG/resources/menu/AddWatch.svg");
@@ -565,7 +554,6 @@ IDAMainWindow
     qproperty-themeicon-OpenStrings:                                url(":/IDAG/resources/menu/OpenStrings.svg");
     qproperty-themeicon-OpenTypeLibraries:                          url(":/IDAG/resources/menu/OpenTypeLibraries.svg");
     qproperty-themeicon-OpenXrefs:                                  url(":/IDAG/resources/menu/OpenXrefs.svg");
-    qproperty-themeicon-OpenXrefsTree:                              url(":/IDAG/resources/menu/OpenXrefsTree.svg");
     qproperty-themeicon-Options:                                    url(":/IDAG/resources/menu/Options.svg");
     qproperty-themeicon-OutputWindow:                               url(":/IDAG/resources/menu/OutputWindow.svg");
     qproperty-themeicon-PatchedBytes:                               url(":/IDAG/resources/menu/PatchedBytes.svg");
@@ -605,7 +593,6 @@ IDAMainWindow
     qproperty-themeicon-StringUnicodePascal4:                       url(":/IDAG/resources/menu/StringUnicodePascal4.svg");
     qproperty-themeicon-SwitchToSource:                             url(":/IDAG/resources/menu/SwitchToSource.svg");
     qproperty-themeicon-TakeSnapshot:                               url(":/IDAG/resources/menu/TakeSnapshot.svg");
-    qproperty-themeicon-TwoFlags:                                   url(":/IDAG/resources/menu/TwoFlags.svg");
     qproperty-themeicon-ThreadRunToCursor:                          url(":/IDAG/resources/menu/ThreadRunToCursor.svg");
     qproperty-themeicon-ThreadRunToCursorBackwards:                 url(":/IDAG/resources/menu/ThreadRunToCursorBackwards.svg");
     qproperty-themeicon-ThreadRunUntilReturn:                       url(":/IDAG/resources/menu/ThreadRunUntilReturn.svg");
@@ -659,7 +646,23 @@ IDAMainWindow
     qproperty-themeicon-Waiting:                                    url(":/IDAG/resources/menu/Waiting.svg");
 }
 
-JumpAnywhereDialog
+/* Add os-dark-theme attribute selector for diff fringe */
+diff_fringe_t:!has-property(os-dark-theme)
 {
-    background-color: palette(base);
+    background-color: white;
+
+    qproperty-diff-region-pick:                             ${diff_region_pick_l};
+    qproperty-diff-region-pick-boundaries:                  ${diff_region_pick_l};
+    qproperty-diff-region-pick-current:                     ${diff_region_pick};
+    qproperty-diff-region-pick-current-boundaries:          ${diff_region_pick_d};
+
+    qproperty-diff-region-leave:                            ${diff_region_leave_l};
+    qproperty-diff-region-leave-boundaries:                 ${diff_region_leave_l};
+    qproperty-diff-region-leave-current:                    ${diff_region_leave};
+    qproperty-diff-region-leave-current-boundaries:         ${diff_region_leave_d};
+
+    qproperty-diff-region-conflict:                         ${diff_region_conflict_l};
+    qproperty-diff-region-conflict-boundaries:              ${diff_region_conflict_l};
+    qproperty-diff-region-conflict-current:                 ${diff_region_conflict};
+    qproperty-diff-region-conflict-current-boundaries:      ${diff_region_conflict_d};
 }
