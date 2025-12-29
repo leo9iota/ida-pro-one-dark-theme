@@ -1,23 +1,39 @@
 /*
-	IDA Pro Aero Dark Theme (Early 2000s Style)
-	Inspired by Windows Vista/7 Aero Glass aesthetic on a dark base.
-	Based on dp701 theme, modified for Aero look.
+	IDA Pro One Dark Theme
+	One Dark Color Palette
 */
 
 @importtheme "_base";
 
+/* One Dark Color Palette */
+@def od_bg          #282c34;
+@def od_fg          #abb2bf;
+@def od_bg_dark     #21252b;
+@def od_bg_darker   #181a1f;
+@def od_selection   #3e4451;
+@def od_selection_fg #ffffff;
+
+@def od_red         #e06c75;
+@def od_green       #98c379;
+@def od_yellow      #e5c07b;
+@def od_blue        #61afef;
+@def od_purple      #c678dd;
+@def od_cyan        #56b6c2;
+@def od_white       #dcdfe4;
+@def od_gray        #5c6370;
+
 /* Base Window & Widget Styling */
 QWidget {
-	background-color: #1E222A; /* Dark blue-gray base */
-	color: #E0E0E5; /* Light gray text */
+	background-color: ${od_bg};
+	color: ${od_fg};
 	border: none; /* Remove default borders */
-    selection-background-color: #385070; /* Selection blue */
-    selection-color: #FFFFFF;
+    selection-background-color: ${od_selection};
+    selection-color: ${od_selection_fg};
 }
 
 QMainWindow {
-	background-color: #1E222A;
-	color: #E0E0E5;
+	background-color: ${od_bg};
+	color: ${od_fg};
 }
 
 /* Dock Widgets - Aero Style Titles */
@@ -31,22 +47,21 @@ DockWidgetTitle, DockAreaDragTitle {
 
 DockWidgetTitle { /* Inactive Title */
 	background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                stop: 0 #303848, stop: 1 #283040); /* Dark gray-blue gradient */
-    color: #A0A8B0; /* Dimmed text */
-    border-bottom: 1px solid #1A1E25; /* Subtle bottom border */
+                                stop: 0 ${od_bg_dark}, stop: 1 ${od_bg_darker});
+    color: ${od_gray};
+    border-bottom: 1px solid ${od_bg_darker};
 }
 
 DockWidgetTitle[active="true"] { /* Active Title - Brighter */
 	background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                stop: 0 #486080, stop: 1 #385070); /* Brighter blue gradient */
-	color: #FFFFFF; /* White text */
-    border-bottom: 1px solid #507090; /* Brighter border */
+                                stop: 0 ${od_selection}, stop: 1 ${od_bg_dark});
+	color: ${od_fg};
+    border-bottom: 1px solid ${od_blue};
 }
 
 DockAreaDragTitle { /* Title being dragged */
-    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                stop: 0 #507090, stop: 1 #406080); /* Visible blue gradient */
-    color: #FFFFFF;
+    background: ${od_blue};
+    color: ${od_bg_darker};
 }
 
 /* Dock Control Buttons - Glassy Feel */
@@ -56,10 +71,10 @@ DockWidgetTitle QPushButton {
 	min-width: 18px;
     width: 18px;
 	padding: 1px;
-	background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
-	border: 1px solid rgba(255, 255, 255, 0.2);
+	background-color: transparent;
+	border: 1px solid transparent;
     border-radius: 3px;
-    color: #E0E0E5; /* Icon color (if text is used) */
+    color: ${od_fg};
     margin: 2px;
 }
 
@@ -94,11 +109,11 @@ DockWidgetTitle QPushButton[toolTip="Float"] {
 /* Fullscreen icon might not exist by default, leave as is or find alternative */
 
 
-/* Tab Widget - Aero Style */
+/* Tab Widget - One Dark Style */
 QTabWidget::pane {
-    border: 1px solid #2A303A; /* Border around content */
-    border-top: none; /* Top border handled by tab-bar */
-    background-color: #232730; /* Slightly different bg for content pane */
+    border: 1px solid ${od_bg_darker};
+    border-top: none;
+    background-color: ${od_bg};
 }
 
 QTabWidget::tab-bar {
@@ -108,35 +123,34 @@ QTabWidget::tab-bar {
 
 QTabBar::tab {
     background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                stop: 0 #3A4250, stop: 1 #303848); /* Dark inactive tab gradient */
-    border: 1px solid #2A303A;
-    border-bottom: none; /* No bottom border for inactive */
+                                stop: 0 ${od_bg_dark}, stop: 1 ${od_bg_darker});
+    border: 1px solid ${od_bg_darker};
+    border-bottom: none;
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
     min-width: 8ex;
-    padding: 5px 10px 5px 10px; /* Padding */
+    padding: 5px 10px 5px 10px;
     margin-right: 2px;
-    color: #B0B8C0; /* Dimmed text */
+    color: ${od_gray};
 }
 
 QTabBar::tab:selected, QTabBar::tab:hover {
-    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                stop: 0 #486080, stop: 1 #385070); /* Brighter gradient for selected/hover */
-    color: #FFFFFF; /* White text */
-    border-color: #405068;
+    background: ${od_bg};
+    color: ${od_fg};
+    border-top: 2px solid ${od_blue}; /* One Dark accent */
 }
 
 QTabBar::tab:selected {
      /* Make selected tab connect to pane */
      margin-bottom: -1px;
      padding-bottom: 6px; /* Adjust padding to align */
+     border-bottom: 1px solid ${od_bg};
 }
 
 
 QTabBar::tab:!selected:hover {
-    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                stop: 0 #425065, stop: 1 #354050); /* Intermediate hover */
-    color: #D0D8E0;
+    background: ${od_selection};
+    color: ${od_fg};
 }
 
 
@@ -166,22 +180,22 @@ QTabBar::close-button:pressed {
 	background: rgba(200, 80, 80, 0.6); /* Darker red pressed */
 }
 
-/* Tooltips - Aero Style */
+/* Tooltips - One Dark Style */
 QToolTip, QTipLabel {
-	border: 1px solid rgba(180, 200, 220, 0.7); /* Light semi-transparent border */
+	border: 1px solid ${od_selection};
 	border-radius: 3px;
-	background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                stop: 0 rgba(40, 45, 55, 0.95), stop: 1 rgba(30, 35, 45, 0.95)); /* Dark semi-transparent gradient */
-	color: #E8E8EE; /* Light text */
+	background: ${od_bg_dark};
+	color: ${od_fg};
     padding: 4px;
 }
 
 /* Containers - GroupBoxes, Lists, Trees */
+/* Containers - GroupBoxes, Lists, Trees */
 EditContainer, ChooserContainer,
 QListView, QTreeView, QGroupBox {
-	border: 1px solid #303848; /* Subtle border */
-	border-radius: 4px; /* Rounded corners */
-    background-color: #232730; /* Slightly different background */
+	border: 1px solid ${od_bg_darker};
+	border-radius: 4px;
+    background-color: ${od_bg};
 }
 
 QGroupBox {
@@ -195,23 +209,22 @@ QGroupBox::title {
 	subcontrol-position: top left;
     left: 10px;
     top: 1px;
-    color: #C0C8D0; /* Title color */
+    color: ${od_fg};
     font-weight: bold;
-    background-color: #232730; /* Match container bg */
+    background-color: ${od_bg};
     padding: 0 3px; /* Padding around title text */
 }
 
-/* Menu Bar and Menus - Aero Style */
+/* Menu Bar and Menus - One Dark Style */
 QMenuBar {
-	background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                stop: 0 #2A3240, stop: 1 #242A36); /* Subtle top gradient */
-	color: #D0D8E0;
-    border-bottom: 1px solid #1A1E25;
+	background-color: ${od_bg_dark};
+	color: ${od_fg};
+    border-bottom: 1px solid ${od_bg_darker};
     padding: 2px;
 }
 
 QMenuBar::item {
-	color : #D0D8E0;
+	color : ${od_fg};
 	spacing: 3px;
 	padding: 4px 10px; /* More padding */
 	background: transparent;
@@ -219,22 +232,22 @@ QMenuBar::item {
 }
 
 QMenuBar::item:selected { /* Hover */
-	background: rgba(100, 150, 200, 0.3); /* Semi-transparent blue hover */
-    color: #FFFFFF;
-    border: 1px solid rgba(120, 180, 230, 0.4);
+	background: ${od_selection};
+    color: ${od_fg};
+    border: none;
 }
 
 QMenuBar::item:pressed { /* Active menu open */
-	background: rgba(80, 120, 160, 0.4);
-    color: #FFFFFF;
-    border: 1px solid rgba(100, 150, 200, 0.5);
+	background: ${od_bg_darker};
+    color: ${od_fg};
+    border: none;
 }
 
 QMenu {
-	border: 1px solid rgba(180, 200, 220, 0.6); /* Similar to tooltip border */
+	border: 1px solid ${od_selection};
 	padding: 4px; /* More padding */
-	background: rgba(30, 35, 45, 0.95); /* Dark semi-transparent bg */
-    color: #E8E8EE;
+	background: ${od_bg_dark};
+    color: ${od_fg};
     border-radius: 3px;
 }
 
@@ -245,66 +258,63 @@ QMenu::item {
 }
 
 QMenu::item:disabled {
-	color: #707880; /* Dimmed disabled text */
+	color: ${od_gray};
     background: transparent;
 }
 
 QMenu::item:selected { /* Hover */
-	background-color: rgba(100, 150, 200, 0.4); /* Consistent hover */
-    color: #FFFFFF;
+	background-color: ${od_blue};
+    color: ${od_bg_darker};
 }
 
 QMenu::separator {
 	height: 1px;
-	background: rgba(180, 200, 220, 0.4); /* Fainter separator */
+	background: ${od_selection};
     margin: 4px 0px; /* Spacing around separator */
 }
 
-/* Buttons - Aero Style */
+/* Buttons - One Dark Style */
 QPushButton {
-	border: 1px solid #405068; /* Normal border */
-	background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                stop: 0 #486080, stop: 0.1 #405878, stop: 0.9 #304868, stop: 1 #284060); /* Blue gradient */
+	border: 1px solid ${od_bg_darker};
+	background: ${od_bg_dark};
 	text-align: center;
 	min-height: 23px; /* Taller buttons */
 	min-width: 70px;
 	padding: 4px 12px 4px 12px; /* Padding */
     border-radius: 4px; /* Rounded corners */
-    color: #E8E8EE; /* Light text */
+    color: ${od_fg};
 }
 
 QPushButton:default {
-	border: 1px solid #70A0D0; /* Brighter blue border for default */
+	border: 1px solid ${od_blue};
     font-weight: bold;
 }
 
 QPushButton:hover {
-	background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                stop: 0 #587090, stop: 0.1 #506888, stop: 0.9 #405878, stop: 1 #385070); /* Lighter gradient on hover */
-	border-color: #6080B0;
-    color: #FFFFFF;
+	background: ${od_selection};
+	border-color: ${od_selection};
+    color: ${od_fg};
 }
 
 QPushButton:pressed {
-	background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                stop: 0 #284060, stop: 0.1 #304868, stop: 0.9 #405878, stop: 1 #486080); /* Inverted gradient on press */
-	border-color: #507090;
-    color: #F0F0F0;
+	background: ${od_bg_darker};
+	border-color: ${od_bg_darker};
+    color: ${od_fg};
     padding-top: 5px; /* Simulate press down */
     padding-bottom: 3px;
 }
 
 QPushButton:!enabled {
-	background: #303540; /* Dull background */
-    border-color: #404550;
-	color: #707880; /* Dimmed text */
+	background: ${od_bg};
+    border-color: ${od_bg_darker};
+	color: ${od_gray};
 }
 
 /* Checkboxes, Radio Buttons, Labels */
 QRadioButton, QCheckBox, QLabel {
 	background: transparent;
-    color: #D0D8E0; /* Default label color */
-    padding: 2px; /* Add spacing */
+    color: ${od_fg};
+    padding: 2px;
 }
 
 QCheckBox::indicator, QRadioButton::indicator {
@@ -312,63 +322,63 @@ QCheckBox::indicator, QRadioButton::indicator {
 	height: 16px;
 }
 
-/* Aero CheckBox */
+/* CheckBox */
 QCheckBox::indicator {
-    border: 1px solid #506078;
+    border: 1px solid ${od_bg_darker};
     border-radius: 3px;
-    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #303848, stop:1 #283040);
+    background-color: ${od_bg_dark};
 }
 
 QCheckBox::indicator:hover {
-    border-color: #7090B8;
-    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #404858, stop:1 #384050);
+    border-color: ${od_blue};
+    background-color: ${od_selection};
 }
 
 QCheckBox::indicator:checked {
-    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #587090, stop:1 #486080);
-    border-color: #6080A8;
-    image: url("$RELPATH/images/checkbox-checked.png"); /* Needs an appropriate white checkmark image */
+    background-color: ${od_selection};
+    border-color: ${od_blue};
+    image: url("$RELPATH/images/checkbox-checked.png");
 }
 QCheckBox::indicator:checked:hover {
-    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #6880A0, stop:1 #587090);
-    border-color: #70A0C8;
+    background-color: ${od_selection};
+    border-color: ${od_blue};
 }
 
 QCheckBox::indicator:disabled {
-    border-color: #404550;
-    background-color: #303540;
+    border-color: ${od_bg_darker};
+    background-color: ${od_bg};
 }
 QCheckBox::indicator:checked:disabled {
     image: url("$RELPATH/images/checkbox-checked-disabled.png"); /* Needs a grayed checkmark image */
 }
 
 
-/* Aero RadioButton */
+/* RadioButton */
 QRadioButton::indicator {
-    border: 1px solid #506078;
+    border: 1px solid ${od_bg_darker};
     border-radius: 8px; /* Circle */
-    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #303848, stop:1 #283040);
+    background-color: ${od_bg_dark};
 }
 
 QRadioButton::indicator:hover {
-     border-color: #7090B8;
-     background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #404858, stop:1 #384050);
+     border-color: ${od_blue};
+     background-color: ${od_selection};
 }
 
 QRadioButton::indicator:checked {
-    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #587090, stop:1 #486080);
-    border-color: #6080A8;
-    image: url("$RELPATH/images/radio-checked.png"); /* Needs an appropriate white dot image centered */
+    background-color: ${od_selection};
+    border-color: ${od_blue};
+    image: url("$RELPATH/images/radio-checked.png"); 
 }
 
 QRadioButton::indicator:checked:hover {
-    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #6880A0, stop:1 #587090);
-    border-color: #70A0C8;
+    background-color: ${od_selection};
+    border-color: ${od_blue};
 }
 
 QRadioButton::indicator:disabled {
-    border-color: #404550;
-    background-color: #303540;
+    border-color: ${od_bg_darker};
+    background-color: ${od_bg};
 }
 QRadioButton::indicator:checked:disabled {
      image: url("$RELPATH/images/radio-checked-disabled.png"); /* Needs a grayed dot image */
@@ -376,47 +386,46 @@ QRadioButton::indicator:checked:disabled {
 
 /* Edits (QLineEdit, QTextEdit) */
 QTextEdit, QPlainTextEdit {
-	background-color: #1A1E24; /* Darker background for text areas */
-	border: 1px solid #303848;
+	background-color: ${od_bg}; /* Darker background for text areas */
+	border: 1px solid ${od_bg_darker};
 	border-radius: 3px;
-    color: #E0E0E5;
-    selection-background-color: #385070;
-    selection-color: #FFFFFF;
+    color: ${od_fg};
+    selection-background-color: ${od_selection};
+    selection-color: ${od_selection_fg};
     padding: 2px;
 }
 
 QLineEdit {
-	border: 1px solid #303848;
+	border: 1px solid ${od_bg_darker};
 	min-height: 22px; /* Match button height roughly */
 	border-radius: 3px;
     padding: 2px 4px; /* Padding inside */
-    background-color: #1A1E24; /* Darker background */
-    color: #E0E0E5;
-	selection-background-color: #385070;
-    selection-color: #FFFFFF;
+    background-color: ${od_bg}; /* Darker background */
+    color: ${od_fg};
+	selection-background-color: ${od_selection};
+    selection-color: ${od_selection_fg};
 }
 
 QLineEdit:hover, QLineEdit:focus {
-	border: 1px solid #507090; /* Blue border on focus/hover */
+	border: 1px solid ${od_blue}; /* Blue border on focus/hover */
 }
 
 QLineEdit:read-only, QLineEdit[readOnly="true"] {
-	color: #808890; /* Dimmed text */
-    background-color: #20242C; /* Slightly different bg */
-    border-color: #384048;
+	color: ${od_gray}; /* Dimmed text */
+    background-color: ${od_bg_dark}; /* Slightly different bg */
+    border-color: ${od_bg_darker};
 }
 
-/* ComboBox - Aero Style */
+/* ComboBox - One Dark Style */
 QComboBox {
-	border: 1px solid #405068; /* Match button border */
+	border: 1px solid ${od_bg_darker};
 	border-radius: 4px;
-	background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                stop: 0 #486080, stop: 1 #304868); /* Match button gradient */
-	color: #E8E8EE;
+	background-color: ${od_bg_dark};
+	color: ${od_fg};
 	padding: 3px 5px 3px 8px; /* Adjust padding */
 	min-height: 23px; /* Match button height */
-    selection-background-color: #385070; /* For selection in dropdown */
-    selection-color: #FFFFFF;
+    selection-background-color: ${od_selection}; /* For selection in dropdown */
+    selection-color: ${od_selection_fg};
 }
 
 /* Editable ComboBox LineEdit part */
@@ -425,40 +434,37 @@ QComboBox QLineEdit {
 	padding: 0;
 	border: none;
     margin: 0;
-    color: #E8E8EE; /* Ensure text color matches */
-    selection-background-color: #385070;
-    selection-color: #FFFFFF;
+    color: ${od_fg}; /* Ensure text color matches */
+    selection-background-color: ${od_selection};
+    selection-color: ${od_selection_fg};
 }
 QComboBox > QLineEdit { min-height: default; }
 QComboBox > QLineEdit:focus { border: none; }
 
 QComboBox:editable {
     /* Ensure background is visible when editable */
-    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                stop: 0 #486080, stop: 1 #304868);
+    background-color: ${od_bg_dark};
 }
 
 QComboBox:focus {
-	border: 1px solid #70A0D0; /* Brighter blue focus border */
+	border: 1px solid ${od_blue}; /* Brighter blue focus border */
 }
 
 QComboBox:hover {
-	background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                stop: 0 #587090, stop: 1 #405878); /* Lighter hover gradient */
-	border-color: #6080B0;
+	background-color: ${od_selection};
+	border-color: ${od_selection};
 }
 
 QComboBox:on { /* When dropdown is open */
-	background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                stop: 0 #284060, stop: 1 #304868); /* Pressed state gradient */
-    border-color: #507090;
+	background-color: ${od_bg_darker};
+    border-color: ${od_blue};
 }
 
 /* Dropdown Button Part */
 QComboBox::drop-down {
 	subcontrol-origin: padding;
 	subcontrol-position: top right;
-	border-left: 1px solid rgba(255, 255, 255, 0.15); /* Faint separator */
+	border-left: 1px solid ${od_bg_darker};
 	width: 20px;
     border-top-right-radius: 3px; /* Match main radius */
     border-bottom-right-radius: 3px;
@@ -481,11 +487,11 @@ QComboBox::down-arrow:on {
 
 /* ComboBox Dropdown Menu */
 QComboBox QAbstractItemView {
-	border: 1px solid rgba(180, 200, 220, 0.6); /* Match menu border */
-    background: rgba(30, 35, 45, 0.97); /* Match menu background, slightly less transparent */
-    color: #E8E8EE;
-    selection-background-color: #385070; /* Use standard selection blue */
-    selection-color: #FFFFFF;
+	border: 1px solid ${od_selection};
+    background: ${od_bg_dark};
+    color: ${od_fg};
+    selection-background-color: ${od_blue};
+    selection-color: ${od_bg_darker};
     padding: 3px;
     border-radius: 3px;
     outline: 0px; /* Remove focus outline inside dropdown */
@@ -497,8 +503,8 @@ QComboBox QAbstractItemView::item {
     min-height: 20px;
 }
 QComboBox QAbstractItemView::item:hover {
-    background-color: rgba(100, 150, 200, 0.4); /* Consistent hover */
-    color: #FFFFFF;
+    background-color: ${od_selection};
+    color: ${od_fg};
 }
 
 QComboBox QAbstractItemView::item:!enabled {
@@ -507,42 +513,39 @@ QComboBox QAbstractItemView::item:!enabled {
 }
 
 
-/* ScrollBars - Aero Style */
+/* ScrollBars - One Dark Style */
 QScrollBar:horizontal {
-	background: #242830; /* Dark background */
+	background: ${od_bg}; /* Dark background */
 	height: 16px; /* Standard height */
 	margin: 0px 16px 0 16px; /* Margin for buttons */
-    border: 1px solid #1A1E25;
+    border: 1px solid ${od_bg_darker};
     border-radius: 8px;
 }
 
 QScrollBar::handle:horizontal {
-	background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                stop: 0 #607088, stop: 1 #506078); /* Handle gradient */
+	background: ${od_selection};
 	min-width: 20px;
     border-radius: 7px; /* Rounded handle */
     margin: 2px 0px; /* Vertical margin */
-    border: 1px solid #708098;
+    border: none;
 }
 QScrollBar::handle:horizontal:hover {
-    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                stop: 0 #708098, stop: 1 #607088);
-    border-color: #8090A8;
+    background: ${od_gray};
 }
 
 QScrollBar::add-line:horizontal, QScrollBar::sub-line:horizontal {
-	border: 1px solid #1A1E25;
-	background: #303848; /* Button background */
+	border: 1px solid ${od_bg_darker};
+	background: ${od_bg_dark}; /* Button background */
 	width: 15px; /* Button width */
     border-radius: 7px;
 }
 QScrollBar::add-line:horizontal { subcontrol-position: right; subcontrol-origin: margin; }
 QScrollBar::sub-line:horizontal { subcontrol-position: left; subcontrol-origin: margin; }
 
-QScrollBar::add-line:horizontal:hover, QScrollBar::sub-line:horizontal:hover { background: #404858; }
-QScrollBar::add-line:horizontal:pressed, QScrollBar::sub-line:horizontal:pressed { background: #485060; }
+QScrollBar::add-line:horizontal:hover, QScrollBar::sub-line:horizontal:hover { background: ${od_selection}; }
+QScrollBar::add-line:horizontal:pressed, QScrollBar::sub-line:horizontal:pressed { background: ${od_bg_darker}; }
 
-QScrollBar:left-arrow:horizontal, QScrollBar::right-arrow:horizontal {
+QScrollBar:left-arrow:horizontal, QScrollBar:right-arrow:horizontal {
 	width: 8px; height: 8px;
     image: url("$RELPATH/images/arrow-left-normal.png"); /* Needs white arrow image */
 }
@@ -550,38 +553,35 @@ QScrollBar::right-arrow:horizontal { image: url("$RELPATH/images/arrow-right-nor
 
 
 QScrollBar:vertical {
-	background: #242830;
+	background: ${od_bg};
 	width: 16px;
 	margin: 16px 0 16px 0;
-    border: 1px solid #1A1E25;
+    border: 1px solid ${od_bg_darker};
     border-radius: 8px;
 }
 
 QScrollBar::handle:vertical {
-	background: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0, /* Horizontal gradient for vertical bar */
-                                stop: 0 #607088, stop: 1 #506078);
+	background: ${od_selection};
 	min-height: 20px;
     border-radius: 7px;
     margin: 0px 2px; /* Horizontal margin */
-     border: 1px solid #708098;
+     border: none;
 }
 QScrollBar::handle:vertical:hover {
-    background: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0,
-                                stop: 0 #708098, stop: 1 #607088);
-    border-color: #8090A8;
+    background: ${od_gray};
 }
 
 QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
-	border: 1px solid #1A1E25;
-	background: #303848;
+	border: 1px solid ${od_bg_darker};
+	background: ${od_bg_dark};
 	height: 15px;
     border-radius: 7px;
 }
 QScrollBar::add-line:vertical { subcontrol-position: bottom; subcontrol-origin: margin; }
 QScrollBar::sub-line:vertical { subcontrol-position: top; subcontrol-origin: margin; }
 
-QScrollBar::add-line:vertical:hover, QScrollBar::sub-line:vertical:hover { background: #404858; }
-QScrollBar::add-line:vertical:pressed, QScrollBar::sub-line:vertical:pressed { background: #485060; }
+QScrollBar::add-line:vertical:hover, QScrollBar::sub-line:vertical:hover { background: ${od_selection}; }
+QScrollBar::add-line:vertical:pressed, QScrollBar::sub-line:vertical:pressed { background: ${od_bg_darker}; }
 
 
 QScrollBar:up-arrow:vertical, QScrollBar::down-arrow:vertical {
@@ -597,13 +597,13 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
 }
 
 
-/* Tables and Lists - Aero Header/Selection */
+/* Tables and Lists - One Dark/Aero Header/Selection */
 QTableView, QTreeView, QListView {
-	border: 1px solid #303848; /* Match container border */
-	background-color: #1A1E24; /* Dark background for items */
-    color: #E0E0E5;
-    alternate-background-color: #1E222A; /* Slightly lighter alternate rows */
-    gridline-color: #283038; /* Subtle grid lines */
+	border: 1px solid ${od_bg_darker}; /* Match container border */
+	background-color: ${od_bg}; /* Dark background for items */
+    color: ${od_fg};
+    alternate-background-color: ${od_bg_dark}; /* Slightly lighter alternate rows */
+    gridline-color: ${od_bg_darker}; /* Subtle grid lines */
     border-radius: 4px; /* Match container radius */
     outline: 0px; /* Remove focus outline */
 }
