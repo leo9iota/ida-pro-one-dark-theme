@@ -72,15 +72,15 @@ DockWidgetTitle QPushButton:pressed {
 
 /* Use default icons or the ones copied */
 DockWidgetTitle QPushButton[toolTip="Fullscreen"] {
-    qproperty-icon: url("$RELPATH/images/control-fullscreen-aero.png");
+    qproperty-icon: url("$RELPATH/icons/control-fullscreen-aero.png");
 }
 
 DockWidgetTitle QPushButton[toolTip="Close"] {
-    qproperty-icon: url("$RELPATH/images/control-close-aero.png");
+    qproperty-icon: url("$RELPATH/icons/control-close-aero.png");
 }
 
 DockWidgetTitle QPushButton[toolTip="Float"] {
-    qproperty-icon: url("$RELPATH/images/control-float-aero.png");
+    qproperty-icon: url("$RELPATH/icons/control-float-aero.png");
 }
 
 /* Tab Widget */
@@ -131,7 +131,7 @@ QTabBar::tab:disabled {
 
 /* Close Button on Tabs */
 QTabBar::close-button {
-    image: url("$RELPATH/images/control-close-aero.png");
+    image: url("$RELPATH/icons/control-close-aero.png");
     subcontrol-position: right;
     subcontrol-origin: padding;
     border-radius: 2px;
@@ -296,7 +296,7 @@ QCheckBox::indicator:hover {
 QCheckBox::indicator:checked {
     background-color: #61afef;
     border-color: #61afef;
-    image: url("$RELPATH/images/checkbox-checked.png");
+    image: url("$RELPATH/icons/checkbox-checked.png");
 }
 
 QRadioButton::indicator {
@@ -310,7 +310,7 @@ QRadioButton::indicator {
 QRadioButton::indicator:checked {
     background-color: #61afef;
     border-color: #61afef;
-    image: url("$RELPATH/images/radio-checked.png");
+    image: url("$RELPATH/icons/radio-checked.png");
 }
 
 /* Inputs */
@@ -376,7 +376,7 @@ QComboBox::drop-down {
 QComboBox::down-arrow {
     width: 10px;
     height: 10px;
-    image: url("$RELPATH/images/arrow-down.png");
+    image: url("$RELPATH/icons/arrow-down.png");
 }
 
 QComboBox QAbstractItemView {
