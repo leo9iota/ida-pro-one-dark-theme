@@ -67,17 +67,17 @@ DockWidgetTitle QPushButton:hover {
 }
 
 DockWidgetTitle QPushButton[toolTip="Close"] {
-    qproperty-icon: url("$RELPATH/icons/svg/control-close.svg");
+    qproperty-icon: url("$RELPATH/icons/control-close.svg");
     icon-size: 16px;
 }
 
 DockWidgetTitle QPushButton[toolTip="Float"] {
-    qproperty-icon: url("$RELPATH/icons/svg/control-float.svg");
+    qproperty-icon: url("$RELPATH/icons/control-float.svg");
     icon-size: 16px;
 }
 
 DockWidgetTitle QPushButton[toolTip="Fullscreen"] {
-    qproperty-icon: url("$RELPATH/icons/svg/control-fullscreen.svg");
+    qproperty-icon: url("$RELPATH/icons/control-fullscreen.svg");
     icon-size: 16px;
 }
 
@@ -110,7 +110,7 @@ QTabBar::tab:hover:!selected {
 }
 
 QTabBar::close-button {
-    image: url("$RELPATH/icons/svg/control-close.svg");
+    image: url("$RELPATH/icons/control-close.svg");
     padding: 2px;
 }
 
@@ -161,11 +161,11 @@ QCheckBox::indicator, QGroupBox::indicator {
 }
 
 QCheckBox::indicator:unchecked {
-    image: url("$RELPATH/icons/svg/checkbox-unchecked.svg");
+    image: url("$RELPATH/icons/checkbox-unchecked.svg");
 }
 
 QCheckBox::indicator:checked {
-    image: url("$RELPATH/icons/svg/checkbox-checked.svg");
+    image: url("$RELPATH/icons/checkbox-checked.svg");
 }
 
 QRadioButton::indicator {
@@ -174,16 +174,16 @@ QRadioButton::indicator {
 }
 
 QRadioButton::indicator:unchecked {
-    image: url("$RELPATH/icons/svg/radio-unchecked.svg");
+    image: url("$RELPATH/icons/radio-unchecked.svg");
 }
 
 QRadioButton::indicator:checked {
-    image: url("$RELPATH/icons/svg/radio-checked.svg");
+    image: url("$RELPATH/icons/radio-checked.svg");
 }
 
 /* Arrows / Combobox */
 QComboBox::down-arrow {
-    image: url("$RELPATH/icons/svg/arrow-down.svg");
+    image: url("$RELPATH/icons/arrow-down.svg");
     width: 14px;
     height: 14px;
 }
